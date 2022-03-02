@@ -1,0 +1,15 @@
+
+node --version --> to check node version
+npm --version --> to check npm version
+npx --version --> to check npx version it will show same as npm
+npm view react version --> to check create-react-app version
+
+
+
+to create aero functional based component
+
+rafce --> react aero functional component export 
+imr -->  import react 
+imrd --> import ReactDOM
+
+ctrl + j || ctrl + ` --> to open terminal
