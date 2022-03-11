@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import "./App.css";
-import Sidebar from "./Sidebar";
-import Chat from "./Chat";
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import Sidebar from './Sidebar';
+import Chat from './Chat';
 // This is react router 5
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // React Router 6
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Login";
-import { useStateValue } from "./StateProvider";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './Login';
+import { useStateValue } from './StateProvider';
 
 const App = () => {
   const [{ user }, dispatch] = useStateValue();
-  console.log(user);
+  // console.log(user);
 
   return (
     // BEM convention
