@@ -3,22 +3,22 @@ import {
   InsertEmoticon,
   Message,
   SearchOutlined,
-} from '@mui/icons-material';
-import MoreVert from '@mui/icons-material/MoreVert';
-import { Avatar, IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import MicIcon from '@mui/icons-material/Mic';
-import { useParams } from 'react-router-dom';
-import './Chat.css';
-import db from './firebase_config';
-import { useStateValue } from './StateProvider';
-import firebase from 'firebase/compat/app';
+} from "@mui/icons-material";
+import MoreVert from "@mui/icons-material/MoreVert";
+import { Avatar, IconButton } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import MicIcon from "@mui/icons-material/Mic";
+import { useParams } from "react-router-dom";
+import "./Chat.css";
+import db from "./firebase_config";
+import { useStateValue } from "./StateProvider";
+import firebase from "firebase/compat/app";
 
 function Chat() {
-  const [seed, setSeed] = useState('');
-  const [input, setInput] = useState('');
+  const [seed, setSeed] = useState("");
+  const [input, setInput] = useState("");
   const { roomId } = useParams();
-  const [roomName, setRoomName] = useState('');
+  const [roomName, setRoomName] = useState("");
   const [messages, setMessages] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
@@ -32,13 +32,13 @@ function Chat() {
 
   useEffect(() => {
     if (roomId) {
-      db.collection('rooms')
+      db.collection("rooms")
         .doc(roomId)
         .onSnapshot((snapshot) => setRoomName(snapshot.data().name));
-      db.collection('rooms')
+      db.collection("rooms")
         .doc(roomId)
-        .collection('messages')
-        .orderBy('timestamp', 'asc')
+        .collection("messages")
+        .orderBy("timestamp", "asc")
         .onSnapshot((snapshot) =>
           setMessages(snapshot.docs.map((doc) => doc.data()))
         );
@@ -48,12 +48,12 @@ function Chat() {
   const sendMessage = (event) => {
     event.preventDefault(); // stop the default reloading
     // console.log(input);
-    db.collection('rooms').doc(roomId).collection('messages').add({
+    db.collection("rooms").doc(roomId).collection("messages").add({
       message: input,
       name: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
-    setInput('');
+    setInput("");
   };
 
   return (
@@ -62,9 +62,9 @@ function Chat() {
         <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
 
         <div className="chat__headerInfo">
-          <h3>{roomName ? roomName : ''}</h3>
+          <h3>{roomName ? roomName : ""}</h3>
           <p>
-            last seen{''}
+            last seen{""}
             {new Date(
               messages[messages.length - 1]?.timestamp?.toDate()
             ).toLocaleString()}
@@ -86,10 +86,11 @@ function Chat() {
 
       {/* TODO */}
       <div className="chat__body">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <p
+            key={index}
             className={`chat__massage ${
-              message.name === user.displayName && 'chat__receiver'
+              message.name === user.displayName && "chat__receiver"
             }`}
           >
             <span className="chat__name">{message.name}</span>
