@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
+=======
+import React, { useState } from "react";
+import "./App.css";
+import Sidebar from "./Sidebar";
+import Chat from "./Chat";
+>>>>>>> 08558408c37f613c62464f37c6786049e0d1f510
 // This is react router 5
 // import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // React Router 6
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import { useStateValue } from './StateProvider';
@@ -13,6 +21,15 @@ import { useStateValue } from './StateProvider';
 const App = () => {
   const [{ user }, dispatch] = useStateValue();
   // console.log(user);
+=======
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import { useStateValue } from "./StateProvider";
+
+const App = () => {
+  const [{ user }, dispatch] = useStateValue();
+  console.log(user);
+>>>>>>> 08558408c37f613c62464f37c6786049e0d1f510
 
   return (
     // BEM convention

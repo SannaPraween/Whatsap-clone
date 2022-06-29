@@ -1,0 +1,1 @@
+1. restrict user to send message only in authorize group.

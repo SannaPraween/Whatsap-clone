@@ -10,8 +10,11 @@
 
 # production
 /build
+<<<<<<< HEAD
 /UploadFile
 
+=======
+>>>>>>> 08558408c37f613c62464f37c6786049e0d1f510
 
 # misc
 .DS_Store

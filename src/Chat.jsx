@@ -95,7 +95,6 @@ function Chat() {
           <IconButton>
             <SearchOutlined />
           </IconButton>
-
           <IconButton>
             <MoreVert />
           </IconButton>
