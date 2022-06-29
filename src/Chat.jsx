@@ -101,11 +101,10 @@ function Chat() {
           </IconButton>
         </div>
       </div>
-
-      {/* TODO */}
       <div className="chat__body">
-        {messages.map((message) => (
+        {messages.map((message, index) => (
           <p
+            key={index}
             className={`chat__massage ${
               message.name === user.displayName && 'chat__receiver'
             }`}

@@ -10,6 +10,8 @@
 
 # production
 /build
+/UploadFile
+
 
 # misc
 .DS_Store

@@ -65,16 +65,20 @@ function Sidebar() {
 
   const searchHandler = (event) => {
     setSearchText(event.target.value);
-    if (searchText.length >= 0) {
+    // console.log(event.target.value);
+    if (searchText.length > 0) {
       const newChatRooms = rooms.filter((room) => {
+        // rooms --> [{}, {}, {}]
         return (
           room.data.name.toLowerCase().indexOf(searchText.toLowerCase()) !== -1
         );
       });
       setSearchRooms(newChatRooms);
+      console.log(searchText);
     } else {
       setSearchRooms(rooms);
     }
+    // console.log(searchText);
   };
 
   return (
@@ -112,8 +116,8 @@ function Sidebar() {
           <input
             type="text"
             placeholder="Search or start new chat"
-            value={searchText}
             onChange={searchHandler}
+            value={searchText}
           />
         </div>
       </div>
