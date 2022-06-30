@@ -1,1 +1,8 @@
 1. restrict user to send message only in authorize group.
+2. enable & disable dark mode
+3. send image,document work in chat
+4. working who have seen message chat
+5. group dp change
+6. how to set status
+7. recording work in chat
+8. how to work emoji in chat
