@@ -10,6 +10,9 @@ import db from './firebase_config';
 import { useStateValue } from './StateProvider';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Switch from '@mui/material/Switch';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -40,24 +43,30 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function Sidebar() {
+function Sidebar(props) {
   const [rooms, setRooms] = useState([]);
   const [{ user }, dispatch] = useStateValue();
 
   const [searchRooms, setSearchRooms] = useState([]);
   const [searchText, setSearchText] = useState('');
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
   // console.log(user.photoURL);
 
   useEffect(() => {
-    const unsubscribe = db.collection('rooms').onSnapshot((snapShot) =>
-      setRooms(
-        snapShot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      )
-    );
+    const unsubscribe = db
+      .collection('rooms')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot((snapShot) =>
+        setRooms(
+          snapShot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
     return () => {
       unsubscribe();
     };
@@ -81,6 +90,15 @@ function Sidebar() {
     // console.log(searchText);
   };
 
+  // for logout feature
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = (event) => {
+    setAnchorEl(null);
+    console.log(event.target.innerText);
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -91,6 +109,10 @@ function Sidebar() {
         >
           <Avatar src={user ? user.photoURL : ''} />
         </StyledBadge>
+        <Switch
+          onChange={props.setTheme}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />
         <div className="sidebar__headerRight">
           <IconButton>
             <StyledBadge
@@ -105,7 +127,31 @@ function Sidebar() {
             <ChatIcon />
           </IconButton>
           <IconButton>
-            <MoreVertIcon />
+            <MoreVertIcon
+              aria-controls={open ? 'demo-positioned-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+            />
+            <Menu
+              id="demo-positioned-menu"
+              aria-labelledby="demo-positioned-button"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+            >
+              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem>
+            </Menu>
           </IconButton>
         </div>
       </div>

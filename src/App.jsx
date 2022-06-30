@@ -12,7 +12,22 @@ import { useStateValue } from './StateProvider';
 
 const App = () => {
   const [{ user }, dispatch] = useStateValue();
-  console.log(user);
+
+  // for dark mode
+  const [mode, setMode] = useState('mageanta');
+  const handleChange = (event) => {
+    if (mode === 'mageanta') {
+      setMode('black');
+      // document.body.style.backgroundColor = '#08112cf7';
+      console.log(mode);
+    } else {
+      setMode('mageanta');
+      // document.body.style.backgroundColor = 'white';
+      console.log(mode);
+    }
+  };
+
+  // console.log(user);
 
   return (
     // BEM convention
@@ -39,7 +54,7 @@ const App = () => {
           {/* Router version 6 */}
 
           <Router>
-            <Sidebar />
+            <Sidebar setTheme={handleChange} mode={mode} />
             <Routes>
               <Route path="/" element={<Chat />} />
               <Route path="/rooms/:roomId" element={<Chat />} />

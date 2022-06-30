@@ -58,6 +58,9 @@ function Chat() {
       name: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
+    db.collection('rooms').doc(roomId).update({
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
     setInput('');
   };
 

@@ -2,6 +2,7 @@ import { Avatar } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import './SidebarChat.css';
 import db from './firebase_config';
+import firebase from 'firebase/compat/app';
 import { Link } from 'react-router-dom';
 
 function SidebarChat({ addNewChat, id, name }) {
@@ -29,6 +30,7 @@ function SidebarChat({ addNewChat, id, name }) {
     if (roomName) {
       db.collection('rooms').add({
         name: roomName,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
   };
