@@ -1,0 +1,9 @@
+1. Whatsapp all feature implementation.
+	# Permission
+	# One Admin will be there.(Admin and users)
+	# Admin will login and he can see the all UI.
+	# Users can login after when admin will add their mail in that specific group
+	# Users can see only UI ( Groups, and chat section).
+	# Admin will create group and he can add any person in specific group
+	# After that user can see that they are added in group and 
+	# Every person in that specific group can see each person message and send message too.
